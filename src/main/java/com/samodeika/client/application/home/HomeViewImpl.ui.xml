@@ -1,0 +1,36 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:x='urn:import:com.google.gwt.user.datepicker.client'>
+
+    <ui:style>
+        .container {
+            display: flex;
+            margin: 30px 30px 30px 30px;
+        }
+
+        .calendar {
+            flex: 0 0 auto;
+            min-width: 300px;
+        }
+
+        .resultPanel {
+            flex: 0 0 auto;
+        }
+
+    </ui:style>
+
+    <g:HTMLPanel>
+        <inherits name='com.google.gwt.user.theme.standard.Standard'/>
+
+        <g:FlowPanel styleName="{style.container}">
+            <g:FlowPanel styleName="{style.calendar}">
+                <g:Label ui:field="selectedDate"/>
+                <x:DatePicker ui:field="datePicker" />
+            </g:FlowPanel>
+
+            <g:FlowPanel styleName="{style.resultPanel}">
+                <g:Label text="Result panel!" />
+            </g:FlowPanel>
+        </g:FlowPanel>
+    </g:HTMLPanel>
+</ui:UiBinder>

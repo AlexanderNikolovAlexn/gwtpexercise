@@ -13,4 +13,6 @@
     <source path='shared'/>
 
     <set-configuration-property name="CssResource.enableGss" value="true"/>
+    <set-configuration-property name="CssResource.legacy" value="true" />
+    <inherits name='com.google.gwt.user.theme.standard.Standard'/>
 </module>
