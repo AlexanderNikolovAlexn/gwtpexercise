@@ -6,13 +6,13 @@ import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.StackPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.datepicker.client.DatePicker;
 import com.gwtplatform.mvp.client.ViewImpl;
 import com.samodeika.client.utils.DateUtils;
-
-import java.util.Calendar;
 import java.util.Date;
 
 public class HomeViewImpl extends ViewImpl implements HomeView {
@@ -33,6 +33,7 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
                 selectedDate.setText(selected + dateString);
             }
         });
+        addTasks();
     }
 
     @UiField
@@ -40,4 +41,17 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
 
     @UiField
     Label selectedDate;
+
+    @UiField
+    StackPanel stackPanel;
+
+    void addTasks() {
+        FlowPanel flowPanel = new FlowPanel();
+        flowPanel.add(new Label("task 1 1 list"));
+        flowPanel.add(new Label("task 1 2 list"));
+        flowPanel.add(new Label("task 1 3 list"));
+        stackPanel.add(flowPanel, "task 1");
+        stackPanel.add(new Label("task 2 list"), "task 2");
+        stackPanel.add(new Label("task 3 list"), "task 3");
+    };
 }

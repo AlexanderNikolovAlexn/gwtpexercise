@@ -30,6 +30,7 @@
 
             <g:FlowPanel styleName="{style.resultPanel}">
                 <g:Label text="Result panel!" />
+                <g:StackPanel ui:field="stackPanel" />
             </g:FlowPanel>
         </g:FlowPanel>
     </g:HTMLPanel>
