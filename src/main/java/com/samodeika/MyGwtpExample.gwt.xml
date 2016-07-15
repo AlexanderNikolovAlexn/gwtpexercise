@@ -4,6 +4,8 @@
 <module rename-to='MyGwtpExample'>
     <inherits name='com.google.gwt.user.User'/>
     <inherits name="com.gwtplatform.mvp.MvpWithEntryPoint"/>
+    <inherits name="org.fusesource.restygwt.RestyGWT"/>
+    <inherits name='com.google.gwt.user.theme.standard.Standard'/>
 
     <extend-configuration-property name="gin.ginjector.modules"
                                    value="com.samodeika.client.gin.ClientModule"/>
@@ -14,5 +16,5 @@
 
     <set-configuration-property name="CssResource.enableGss" value="true"/>
     <set-configuration-property name="CssResource.legacy" value="true" />
-    <inherits name='com.google.gwt.user.theme.standard.Standard'/>
+
 </module>

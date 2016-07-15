@@ -13,7 +13,10 @@ import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.ProxyStandard;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
+import com.samodeika.shared.model.Hello;
 import com.samodeika.shared.model.TaskModel;
+import org.fusesource.restygwt.client.Method;
+import org.fusesource.restygwt.client.MethodCallback;
 
 import java.util.List;
 
@@ -38,7 +41,8 @@ public class HomePresenter extends Presenter<HomeView, HomePresenter.MyProxy> {
     @Override
     protected void onReveal() {
         super.onReveal();
-        serviceFactory.getTaskService().getTasks(initTaskCallback);
+        //serviceFactory.getTaskService().getTasks(initTaskCallback);
+        serviceFactory.getHelloService().getHellos(initHelloCallback);
     }
 
     AsyncCallback<List<TaskModel>> initTaskCallback = new AsyncCallback<List<TaskModel>>() {
@@ -50,6 +54,18 @@ public class HomePresenter extends Presenter<HomeView, HomePresenter.MyProxy> {
         @Override
         public void onSuccess(List<TaskModel> taskModels) {
             getView().addTasks(taskModels);
+        }
+    };
+
+    MethodCallback<List<Hello>> initHelloCallback = new MethodCallback<List<Hello>>() {
+        @Override
+        public void onFailure(Method method, Throwable throwable) {
+
+        }
+
+        @Override
+        public void onSuccess(Method method, List<Hello> hellos) {
+            getView().displayHellos(hellos);
         }
     };
 }
