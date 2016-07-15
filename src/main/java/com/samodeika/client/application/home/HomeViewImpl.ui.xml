@@ -20,7 +20,6 @@
     </ui:style>
 
     <g:HTMLPanel>
-        <inherits name='com.google.gwt.user.theme.standard.Standard'/>
 
         <g:FlowPanel styleName="{style.container}">
             <g:FlowPanel styleName="{style.calendar}">

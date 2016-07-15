@@ -13,7 +13,10 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.datepicker.client.DatePicker;
 import com.gwtplatform.mvp.client.ViewImpl;
 import com.samodeika.client.utils.DateUtils;
+import com.samodeika.shared.model.TaskModel;
+
 import java.util.Date;
+import java.util.List;
 
 public class HomeViewImpl extends ViewImpl implements HomeView {
     interface Binder extends UiBinder<Widget, HomeViewImpl> {
@@ -33,7 +36,6 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
                 selectedDate.setText(selected + dateString);
             }
         });
-        addTasks();
     }
 
     @UiField
@@ -45,13 +47,14 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
     @UiField
     StackPanel stackPanel;
 
-    void addTasks() {
+    @Override
+    public void addTasks(List<TaskModel> tasks) {
         FlowPanel flowPanel = new FlowPanel();
-        flowPanel.add(new Label("task 1 1 list"));
-        flowPanel.add(new Label("task 1 2 list"));
-        flowPanel.add(new Label("task 1 3 list"));
+        for (TaskModel task : tasks) {
+            flowPanel.add(new Label(task.getMessage()));
+        }
         stackPanel.add(flowPanel, "task 1");
         stackPanel.add(new Label("task 2 list"), "task 2");
         stackPanel.add(new Label("task 3 list"), "task 3");
-    };
+    }
 }
