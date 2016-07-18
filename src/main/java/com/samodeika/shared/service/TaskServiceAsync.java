@@ -1,11 +1,16 @@
 package com.samodeika.shared.service;
 
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.samodeika.shared.model.TaskModel;
+import org.fusesource.restygwt.client.MethodCallback;
+import org.fusesource.restygwt.client.RestService;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
 import java.util.List;
 
-public interface TaskServiceAsync {
+@Path("/api/tasks")
+public interface TaskServiceAsync extends RestService {
 
-    void getTasks(AsyncCallback<List<TaskModel>> async);
+    @GET
+    void getTasks(MethodCallback<List<TaskModel>> callback);
 }

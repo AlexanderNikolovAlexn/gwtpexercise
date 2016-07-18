@@ -48,9 +48,6 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
     @UiField
     StackPanel stackPanel;
 
-    @UiField
-    StackPanel stackPanelHellos;
-
     @Override
     public void addTasks(List<TaskModel> tasks) {
         FlowPanel flowPanel = new FlowPanel();
@@ -58,16 +55,6 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
             flowPanel.add(new Label(task.getMessage()));
         }
         stackPanel.add(flowPanel, "task 1");
-        stackPanel.add(new Label("task 2 list"), "task 2");
-        stackPanel.add(new Label("task 3 list"), "task 3");
     }
 
-    @Override
-    public void displayHellos(List<Hello> hellos) {
-        FlowPanel flowPanel = new FlowPanel();
-        for (Hello hello : hellos) {
-            flowPanel.add(new Label(hello.getName()));
-        }
-        stackPanel.add(flowPanel, "hello 1");
-    }
 }

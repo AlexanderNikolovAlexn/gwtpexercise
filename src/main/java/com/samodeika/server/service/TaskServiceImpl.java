@@ -1,14 +1,19 @@
 package com.samodeika.server.service;
 
-import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.samodeika.shared.model.TaskModel;
 import com.samodeika.shared.service.TaskService;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TaskServiceImpl extends RemoteServiceServlet implements TaskService {
+@Path("/tasks")
+public class TaskServiceImpl implements TaskService {
 
+    @GET
+    @Produces("application/json")
     @Override
     public List<TaskModel> getTasks() {
         List<TaskModel> tasks = new ArrayList<>();

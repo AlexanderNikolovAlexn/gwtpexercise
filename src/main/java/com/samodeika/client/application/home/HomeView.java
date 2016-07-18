@@ -9,5 +9,4 @@ import java.util.List;
 public interface HomeView extends View {
 
     void addTasks(List<TaskModel> tasks);
-    void displayHellos(List<Hello> hellos);
 }
