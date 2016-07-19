@@ -1,4 +1,4 @@
-package com.samodeika.client.utils;
+package com.samodeika.shared.utils;
 
 import com.google.gwt.i18n.client.DateTimeFormat;
 
@@ -9,8 +9,15 @@ public class DateUtils {
     private static final String DATE_MASK = "dd/MM/yyyy";
 
     public static String getDate(Date date) {
-        String dateString = DateTimeFormat.getFormat(DATE_MASK).format(date);
+        DateTimeFormat dtf = DateTimeFormat.getFormat(DATE_MASK);
+        String dateString = dtf.format(date);
         return dateString;
+    }
+
+    public static Date getDate(String s) {
+        DateTimeFormat dtf = DateTimeFormat.getFormat(DATE_MASK);
+        Date date = dtf.parse(s);
+        return date;
     }
 
     public static String getCurrentDate() {

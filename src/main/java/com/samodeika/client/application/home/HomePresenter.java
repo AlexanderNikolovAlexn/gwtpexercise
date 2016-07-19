@@ -13,7 +13,9 @@ import com.samodeika.shared.model.TaskModel;
 import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public class HomePresenter extends Presenter<HomeView, HomePresenter.MyProxy> {
 
@@ -39,14 +41,14 @@ public class HomePresenter extends Presenter<HomeView, HomePresenter.MyProxy> {
         serviceFactory.getTaskService().getTasks(initTaskCallback);
     }
 
-    MethodCallback<List<TaskModel>> initTaskCallback = new MethodCallback<List<TaskModel>>() {
+    MethodCallback<Map<Date, List<TaskModel>>> initTaskCallback = new MethodCallback<Map<Date, List<TaskModel>>>() {
         @Override
         public void onFailure(Method method, Throwable throwable) {
 
         }
 
         @Override
-        public void onSuccess(Method method, List<TaskModel> taskModels) {
+        public void onSuccess(Method method, Map<Date, List<TaskModel>> taskModels) {
             getView().addTasks(taskModels);
         }
     };

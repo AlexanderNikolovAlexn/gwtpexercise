@@ -1,13 +1,13 @@
 package com.samodeika.shared.service;
 
-import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import com.samodeika.shared.model.TaskModel;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
-@RemoteServiceRelativePath("tasks")
 public interface TaskService {
 
-    List<TaskModel> getTasks();
+    Map<Date, List<TaskModel>> getTasks();
 
 }
