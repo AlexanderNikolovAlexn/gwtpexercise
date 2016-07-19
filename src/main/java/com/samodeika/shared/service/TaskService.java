@@ -9,5 +9,6 @@ import java.util.Map;
 public interface TaskService {
 
     Map<Date, List<TaskModel>> getTasks();
+    List<TaskModel> getTasks(String date);
 
 }

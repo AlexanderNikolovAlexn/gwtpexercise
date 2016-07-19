@@ -2,16 +2,16 @@ package com.samodeika.client.application.home;
 
 import javax.inject.Inject;
 
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.FlowPanel;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.StackPanel;
-import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.ui.*;
 import com.google.gwt.user.datepicker.client.DatePicker;
 import com.gwtplatform.mvp.client.ViewImpl;
+import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 import com.samodeika.shared.utils.DateUtils;
 import com.samodeika.shared.model.TaskModel;
 
@@ -20,7 +20,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-public class HomeViewImpl extends ViewImpl implements HomeView {
+public class HomeViewImpl extends ViewWithUiHandlers<HomeUiHandlers> implements HomeView {
     interface Binder extends UiBinder<Widget, HomeViewImpl> {
     }
 
@@ -36,6 +36,7 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
             public void onValueChange(ValueChangeEvent<Date> valueChangeEvent) {
                 String dateString = DateUtils.getDate(valueChangeEvent.getValue());
                 selectedDate.setText(selected + dateString);
+                getUiHandlers().loadTasks(dateString);
             }
         });
     }
@@ -49,6 +50,9 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
     @UiField
     StackPanel stackPanel;
 
+    @UiField
+    FlowPanel dayTask;
+
     @Override
     public void addTasks(Map<Date, List<TaskModel>> tasks) {
         for (Date taskDate : tasks.keySet()) {
@@ -61,4 +65,14 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
         }
     }
 
+    @Override
+    public void displayTask(List<TaskModel> tasks) {
+        dayTask.clear();
+        if (tasks == null || tasks.isEmpty()) {
+            return;
+        }
+        for (TaskModel task : tasks) {
+            dayTask.add(new Label(task.getMessage()));
+        }
+    }
 }

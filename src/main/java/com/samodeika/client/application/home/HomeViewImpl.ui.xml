@@ -31,6 +31,10 @@
                 <g:Label text="Result panel!" />
                 <g:StackPanel ui:field="stackPanel" />
             </g:FlowPanel>
+            <g:FlowPanel>
+                <g:Label text="Single calendar day" />
+                <g:FlowPanel ui:field="dayTask" />
+            </g:FlowPanel>
         </g:FlowPanel>
     </g:HTMLPanel>
 </ui:UiBinder>

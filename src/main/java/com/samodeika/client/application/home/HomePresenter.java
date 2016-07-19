@@ -17,7 +17,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-public class HomePresenter extends Presenter<HomeView, HomePresenter.MyProxy> {
+public class HomePresenter extends Presenter<HomeView, HomePresenter.MyProxy>
+    implements HomeUiHandlers {
 
     @ProxyStandard
     @NameToken(NameTokens.HOME)
@@ -30,6 +31,7 @@ public class HomePresenter extends Presenter<HomeView, HomePresenter.MyProxy> {
             HomeView view,
             MyProxy proxy) {
         super(eventBus, view, proxy, ApplicationPresenter.SLOT_MAIN);
+        getView().setUiHandlers(this);
     }
 
     @Inject
@@ -39,6 +41,21 @@ public class HomePresenter extends Presenter<HomeView, HomePresenter.MyProxy> {
     protected void onReveal() {
         super.onReveal();
         serviceFactory.getTaskService().getTasks(initTaskCallback);
+    }
+
+    @Override
+    public void loadTasks(String date) {
+        serviceFactory.getTaskService().getTasks(date, new MethodCallback<List<TaskModel>>() {
+            @Override
+            public void onFailure(Method method, Throwable throwable) {
+
+            }
+
+            @Override
+            public void onSuccess(Method method, List<TaskModel> taskModels) {
+                getView().displayTask(taskModels);
+            }
+        });
     }
 
     MethodCallback<Map<Date, List<TaskModel>>> initTaskCallback = new MethodCallback<Map<Date, List<TaskModel>>>() {

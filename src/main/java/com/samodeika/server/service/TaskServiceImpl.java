@@ -5,9 +5,7 @@ import com.samodeika.shared.model.TaskModel;
 import com.samodeika.shared.service.TaskService;
 import com.samodeika.shared.utils.DateUtils;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -16,12 +14,12 @@ import java.util.*;
 @Path("/tasks")
 public class TaskServiceImpl implements TaskService {
 
-    @GET
-    @Produces("application/json")
-    @Override
-    public Map<Date, List<TaskModel>> getTasks() {
-        Map<Date, List<TaskModel>> result = new HashMap<>();
-        DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+    private Map<Date, List<TaskModel>> result;
+    private DateFormat format;
+
+    public TaskServiceImpl() {
+        result = new HashMap<>();
+        format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
         Date date = new Date();
 
         List<TaskModel> tasks1 = new ArrayList<>();
@@ -45,7 +43,33 @@ public class TaskServiceImpl implements TaskService {
             e.printStackTrace();
         }
         result.put(date, tasks2);
+    }
+
+    private Date getDate(String s) {
+        Date date = new Date();
+        try {
+            date = format.parse(s);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
+    }
+
+    @GET
+    @Produces("application/json")
+    @Override
+    public Map<Date, List<TaskModel>> getTasks() {
 
         return result;
+    }
+
+    @GET
+    @Produces("application/json")
+    @Path("/calendar")
+    @Override
+    public List<TaskModel> getTasks(@QueryParam("calendarDate") String date) {
+        List<TaskModel> resultList = new ArrayList<>();
+        resultList = result.get(getDate(date));
+        return resultList;
     }
 }
