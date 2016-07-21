@@ -2,7 +2,8 @@
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
              xmlns:x='urn:import:com.google.gwt.user.datepicker.client'>
 
-    <ui:style>
+    <ui:style field="style"
+            type="com.samodeika.client.application.home.HomeStyle">
         .container {
             display: flex;
             margin: 30px 30px 30px 30px;
@@ -15,6 +16,13 @@
 
         .resultPanel {
             flex: 0 0 auto;
+        }
+
+        .styleDate {
+            border: 1px solid green;
+            border-radius: 50%;
+            width: 10px;
+            margin: 0 auto;
         }
 
     </ui:style>

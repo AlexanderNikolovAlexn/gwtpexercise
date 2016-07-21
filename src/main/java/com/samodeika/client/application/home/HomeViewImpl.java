@@ -24,6 +24,9 @@ public class HomeViewImpl extends ViewWithUiHandlers<HomeUiHandlers> implements 
     interface Binder extends UiBinder<Widget, HomeViewImpl> {
     }
 
+    @UiField
+    HomeStyle style;
+
     private static final String today = "Today is ";
     private static final String selected = "Selected date is ";
 
@@ -62,6 +65,7 @@ public class HomeViewImpl extends ViewWithUiHandlers<HomeUiHandlers> implements 
                 flowPanel.add(new Label(list.get(i).getMessage()));
             }
             stackPanel.add(flowPanel, DateUtils.getDate(taskDate));
+            datePicker.addStyleToDates(style.styleDate(), taskDate);
         }
     }
 
